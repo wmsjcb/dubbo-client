@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!--提供方信息-->
+    <dubbo:application name="dubbo-client" owner="mic"/>
+    <dubbo:protocol port="20880" name="dubbo" />
+
+    <!--注册中心-->
+    <!--<dubbo:registry address="zookeeper://192.168.11.156:2181" file="d:/dubbo-server"/>-->
+    <!--<dubbo:registry address="N/A" />-->
+    <!--file="d:/dubbo-server"本地缓存-->
+    <dubbo:registry  address="zookeeper://192.168.1.155:2181" file="e:/dubbo-server" />
+    <!--没有注册中心一定要给1个url 属性-->
+    <!--<dubbo:reference id="hello" interface="learn.self.IHello" url="dubbo://192.168.1.100:20880/learn.self.IHello"/>-->
+
+    <!--check 设成false 解决循环依赖的问题-->
+    <dubbo:reference id="hello" interface="learn.self.IHello" protocol="hessian" check="false"/>
+
+
+</beans>
